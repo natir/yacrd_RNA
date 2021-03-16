@@ -19,7 +19,7 @@ def main(args=None):
 
     args = parser.parse_args(args)
 
-    for read in list_chimera(mapping):
+    for read in list_chimera(args.mapping):
         print(read)
 
 
