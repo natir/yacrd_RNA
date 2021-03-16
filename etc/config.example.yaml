@@ -1,0 +1,6 @@
+ # Environement directory use
+env_mode: "envs"
+#env_mode: "envs/hilbert"
+
+# Control maximal number of threads
+max_threads: 16

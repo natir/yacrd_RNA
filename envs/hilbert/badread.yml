@@ -1,0 +1,13 @@
+name: badread
+
+channels:
+  - nodefaults
+  - http://conda.repo.test.hhu.de/bioconda
+  - http://conda.repo.test.hhu.de/main
+  - http://conda.repo.test.hhu.de/conda-forge
+
+dependencies:
+  - badread = 0.1.5
+  - seqtk = 1.3
+  - edlib = 1.2.3
+  - python-edlib = 1.3.8.post1

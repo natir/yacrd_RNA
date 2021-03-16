@@ -1,0 +1,24 @@
+rule badread:
+    input:
+        transcriptome = "data/{dataset}/transcriptome.fasta",
+        
+    output:
+        reads = "data/{dataset}/reads.fasta",
+           
+    log:
+        "logs/simulate/transcripitome_{dataset}_badread.txt"
+
+    threads:
+        config['max_threads']
+        
+    conda:
+        f"../{config['env_mode']}/badread.yml"
+        
+    shell:
+        """
+        ./scripts/multi-thread-badread.sh 32 {threads} {input.transcriptome} 90 {output.reads} 2>&1 > {log}
+        """
+
+rule simulate:
+    input:
+        "data/human/reads.fasta"

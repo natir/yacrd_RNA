@@ -1,0 +1,33 @@
+rule human_genome:
+    output:
+        genome = "data/human/genome.fasta"
+
+    conda:
+        f"../{config['env_mode']}/data.yml"
+
+    log:
+        "logs/data/human_genome.txt"
+        
+    shell:
+        "curl ftp://ftp.ncbi.nlm.nih.gov/refseq/H_sapiens/annotation/GRCh38_latest/refseq_identifiers/GRCh38_latest_genomic.fna.gz 2> {log} | seqtk seq -A - > {output.genome} 2> {log}"
+
+        
+rule human_transcriptome:
+    output:
+        transcriptome = "data/human/transcriptome.fasta"
+
+    conda:
+        f"../{config['env_mode']}/data.yml"
+
+    log:
+        "logs/data/human_transcriptome.txt"
+        
+    shell:
+        "curl ftp://ftp.ncbi.nlm.nih.gov/refseq/H_sapiens/annotation/GRCh38_latest/refseq_identifiers/GRCh38_latest_rna.fna.gz 2> {log} | seqtk seq -A - > {output.transcriptome} 2> {log}"
+
+
+rule data:
+    input:
+        rules.human_genome.output,
+        rules.human_transcriptome.output
+        

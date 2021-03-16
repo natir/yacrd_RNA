@@ -1,0 +1,13 @@
+{
+    "__default__":
+    {
+        "cores": "{threads}",
+        "mem_mb": "{resources.mem_total_mb}",
+        "name": "{jobid}_{rule}",
+        "output": "logs/cluster/{jobid}_{rule}.stdout",
+        "error": "logs/cluster/{jobid}_{rule}.stderr",
+        "account": "HGSVC",
+        "run_hrs": "{resources.runtime_hrs}",
+        "run_min": "{resources.runtime_min}"
+    },
+}

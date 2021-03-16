@@ -1,0 +1,9 @@
+name: badread
+
+channels:
+  - bioconda
+  - defaults
+
+dependencies:
+  - yacrd = 0.5.1
+
