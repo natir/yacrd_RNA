@@ -5,5 +5,5 @@ channels:
   - defaults
 
 dependencies:
-  - yacrd = 0.5.1
+  - yacrd = 0.6.2
 
