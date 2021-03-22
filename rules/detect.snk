@@ -1,42 +1,3 @@
-rule mapping:
-    input:
-        ref = "data/{dataset}/transcriptome.fasta",
-        reads = "data/{dataset}/reads.fasta",
-        
-    output:
-        mapping = "detect/{dataset}/reads2ref.paf",
-        
-    log:
-        "logs/detect/mapping_{dataset}.txt"
-
-    threads:
-        config['max_threads']
-
-    conda:
-        f"../{config['env_mode']}/minimap.yml"
-
-    shell:
-        """
-        minimap2 -x map-ont -t {threads} {input.ref} {input.reads} > {output} 2> {log}
-        """
-
-    
-rule truth_chimera:
-    input:
-        mapping = "detect/{dataset}/reads2ref.paf"
-
-    output:
-        chimera = "detect/{dataset}/chimera.truth"
-
-    log:
-        "logs/detect/truth_chimera_{dataset}.txt"
-
-    shell:
-        """
-        ./scripts/real_chimera.py {input.mapping} > {output.chimera}
-        """
-
-
 rule overlapping:
     input:
         reads = "data/{dataset}/reads.fasta"
@@ -79,4 +40,3 @@ rule yacrd:
 rule detect:
     input:
         "detect/human/chimera.yacrd",
-        "detect/human/chimera.truth"

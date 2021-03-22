@@ -20,6 +20,6 @@ use-envmodules: True
 nolock: False
 default-resources:
   - mem_per_cpu_mb=32768
-  - mem_total_mb=32768
+  - mem_total_mb=64000
   - runtime_hrs=6
   - runtime_min=59
